@@ -1,0 +1,15 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+  <h2>Create Course</h2>
+  <form class="flex" method="post">
+    {% csrf_token %}
+    {{ course_form.as_p }}
+    <h3>Steps</h3>
+    {{ formset.management_form }}
+    {% for form in formset %}
+      {{ form.as_p }}
+    {% endfor %}
+    <button type="submit">Save Course</button>
+  </form>
+{% endblock %}

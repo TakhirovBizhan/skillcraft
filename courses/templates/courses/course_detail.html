@@ -1,0 +1,53 @@
+<!-- templates/courses/course_detail.html -->
+
+{% extends "base_generic.html" %}
+
+{% block content %}
+<div style="border: 2px solid aqua;"
+  class="flex bg-tran-black flex-col items-center gap-y-8 rounded-3xl p-12 text-lime-100">
+  <h2 class="text-lime-100">{{ course.title }}</h2>
+  <p>{{ course.description }}</p>
+  <p>Progress: {{ completed_steps }} of {{ total_steps }} steps completed</p>
+</div>
+{% if is_enrolled %}
+<h2>Course Steps</h2>
+<ul>
+  {% for step in steps %}
+  <li>
+    <h3><a href="{% url 'step_detail' step.id %}">{{ step.title }}</a></h3>
+    <p>{{ step.description }}</p>
+    {% if step.id in progress %}
+    <svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M18 2.00003L6 14L0.5 8.50003L1.91 7.09003L6 11.17L16.59 0.590027L18 2.00003Z" fill="#0FA958" />
+    </svg>
+    {% else %}
+    <form action="{% url 'complete_step' step.id %}" method="post">
+      {% csrf_token %}
+      <button style="border: 1px solid aqua; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;"
+        class="mt-6 bg-emerald-800 p-2 rounded-md m-auto w-fit text-lime-100" type="submit">Complete Step</button>
+    </form>
+    {% endif %}
+    {% if is_author %}
+    <a href="{% url 'edit_step' course.id step.id %}">Edit</a>
+    <form action="{% url 'delete_step' course.id step.id %}" method="post" style="display:inline;">
+      {% csrf_token %}
+      <button type="submit">Delete</button>
+    </form>
+    {% endif %}
+  </li>
+  {% endfor %}
+    {% if is_author %}
+    <li>
+    <div style="border: 2px solid aqua;"
+      class="flex bg-tran-black flex-col items-center gap-y-8 rounded-3xl p-12 text-lime-100">
+      <a href="{% url 'add_step' course.id %}">Add Step</a>
+    </div>
+    {% endif %}
+    {% else %}
+    <p>You are not enrolled in this course.</p>
+    <a href="{% url 'enroll' course.id %}">Enroll</a>
+  </li>
+</ul>
+
+{% endif %}
+{% endblock %}

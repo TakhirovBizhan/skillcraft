@@ -1,0 +1,14 @@
+<!-- templates/courses/course_form.html -->
+
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h2>{{ form.instance.pk|yesno:"Edit Course,Create Course" }}</h2>
+  <div style="border: 2px solid aqua;" class="flex bg-tran-black flex-col items-center gap-y-8 rounded-3xl p-12 ">
+    <form class="flex flex-col gap-y-4" method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button style="border: 1px solid aqua; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;" class="mt-6 bg-emerald-800 p-2 rounded-md m-auto w-fit text-lime-100" type="submit">Save</button>
+    </form>
+  </div>
+{% endblock %}

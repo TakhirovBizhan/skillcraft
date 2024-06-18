@@ -1,0 +1,51 @@
+
+
+#header nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#header nav ul li {
+    display: inline;
+    margin-right: 10px;
+}
+
+#content {
+    padding: 20px;
+}
+
+a:hover {
+    color: aqua;
+}
+
+button:hover {
+    color: aqua;
+}
+
+input {
+    padding: 5px;
+    border: 1px solid aqua;
+    border-radius: 20px;
+    background-color: #818080;
+}
+
+textarea {
+    width: 500px;
+    background-color: #818080;
+    border-radius: 20px;
+    border: 2px solid aqua;
+}
+
+label {
+    font-weight: 500;
+    font-size: 23px;
+    color:rgb(193, 220, 175);
+}
+
+input:valid {
+    border: 2px solid green;
+  }
+
+  input:invalid {
+    border: 2px solid red;
+  }

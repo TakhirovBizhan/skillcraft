@@ -1,0 +1,15 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h2>My Notes</h2>
+  <ul>
+    {% for note in notes %}
+      <li>
+        <a href="{% url 'course_detail' note.course.id %}">{{ note.course.title }}</a>
+        <a 
+        style="border: 1px solid aqua; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;" class="mt-6 bg-emerald-800 p-2 rounded-md m-auto w-fit text-lime-100" 
+        href="{% url 'remove_note' note.id %}">Remove from Notes</a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}
