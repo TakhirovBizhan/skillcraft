@@ -11,7 +11,7 @@ class CourseAdmin(admin.ModelAdmin):
     search_fields = ('title', 'description')
     inlines = [CourseStepInline]
     date_hierarchy = 'created_at'
-    filter_horizontal = ('tags',)  # Используем filter_horizontal для ManyToManyField
+    filter_horizontal = ('tags',)
 
     @admin.display(description='Number of Steps')
     def number_of_steps(self, obj):
@@ -19,7 +19,7 @@ class CourseAdmin(admin.ModelAdmin):
 
     @admin.display(description='Description')
     def short_description(self, obj):
-        return obj.description[:50]  # Обрезаем текст до 50 символов
+        return obj.description[:50] 
 
 class CourseStepAdmin(admin.ModelAdmin):
     list_display = ('title', 'course', 'reading_time')
